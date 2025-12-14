@@ -76,22 +76,20 @@
 <button onclick="abrirPresente()">Abrir presente 🎁</button>
 
 <!-- MÚSICA -->
-<audio autoplay loop>
+<audio id="musica" loop>
     <source src="natal.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    const musica = document.querySelector("audio");
+    const musica = document.getElementById("musica");
 
-document.addEventListener("click", () => {
-    musica.play();
-}, { once: true });
-</script>
+    // tenta tocar assim que carregar
+    window.addEventListener("load", () => {
+        musica.play().catch(() => {
+            // se o navegador bloquear, tudo bem — vai tocar no clique
+        });
+    });
 
-function tocarmusca() {    
-    musica.play(); // garante que toque no celular
-    }
-    
     function abrirPresente() {
         musica.play(); // garante que toque no celular
         window.location.href = "presente.html";
