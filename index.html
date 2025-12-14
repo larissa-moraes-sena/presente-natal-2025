@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingle Bell 🎄</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(#960101, #640601);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+        color: #fff;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 2.3rem;
+        font-weight: bold;
+        animation: fade 2s ease-in-out;
+        margin: 0 15px;
+    }
+
+    @keyframes fade {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    button {
+        margin-top: 20px;
+        background: #ffffff;
+        color: #b30000;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        border-radius: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.08);
+    }
+
+    /* Neve */
+    .snowflake {
+        position: fixed;
+        top: -10px;
+        color: white;
+        font-size: 1em;
+        user-select: none;
+        pointer-events: none;
+        animation: snow linear infinite;
+    }
+
+    @keyframes snow {
+        0% {transform: translateY(0) rotate(0deg);}
+        100% {transform: translateY(110vh) rotate(360deg);}
+    }
+</style>
+</head>
+<body>
+
+<h1>🎄 Feliz Natal, Amor ❤️</h1>
+<p style="font-size:1.2rem; max-width:300px;">
+    Preparei algo especial para você. Quer abrir seu presente?
+</p>
+
+<button onclick="abrirPresente()">Abrir presente 🎁</button>
+
+<!-- MÚSICA -->
+<audio id="musica" loop>
+    <source src="natal.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const musica = document.getElementById("musica");
+
+    // tenta tocar assim que carregar
+    window.addEventListener("load", () => {
+        musica.play().catch(() => {
+            // se o navegador bloquear, tudo bem — vai tocar no clique
+        });
+    });
+
+    function abrirPresente() {
+        musica.play(); // garante que toque no celular
+        window.location.href = "presente.html";
+    }
+
+    // Neve ❄
+    function criarNeve() {
+        const floco = document.createElement("div");
+        floco.classList.add("snowflake");
+        floco.textContent = "❄";
+        floco.style.left = Math.random() * 100 + "vw";
+        floco.style.fontSize = (Math.random() * 10 + 10) + "px";
+        floco.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(floco);
+
+        setTimeout(() => floco.remove(), 6000);
+    }
+
+    setInterval(criarNeve, 150);
+</script>
+
+</body>
+</html>
