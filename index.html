@@ -81,15 +81,18 @@
 </audio>
 
 <script>
-    const musica = document.getElementById("musica");
+    <!-- Música -->
+<audio id="musica" loop>
+    <source src="natal.mp3" type="audio/mpeg">
+</audio>
 
-    // tenta tocar assim que carregar
-    window.addEventListener("load", () => {
-        musica.play().catch(() => {
-            // se o navegador bloquear, tudo bem — vai tocar no clique
-        });
-    });
+<script>
+const musica = document.getElementById("musica");
 
+/* autoplay mobile */
+document.addEventListener("click", () => {
+    musica.play();
+}, { once: true });
     function abrirPresente() {
         musica.play(); // garante que toque no celular
         window.location.href = "presente.html";
