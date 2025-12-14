@@ -81,12 +81,15 @@
 </audio>
 
 <script>
-const musica = document.getElementById("musica");
+    const musica = document.getElementById("musica");
 
-/* autoplay mobile */
-document.addEventListener("click", () => {
-    musica.play();
-}, { once: true });
+    // tenta tocar assim que carregar
+    window.addEventListener("load", () => {
+        musica.play().catch(() => {
+            // se o navegador bloquear, tudo bem — vai tocar no clique
+        });
+    });
+
     function abrirPresente() {
         musica.play(); // garante que toque no celular
         window.location.href = "presente.html";
