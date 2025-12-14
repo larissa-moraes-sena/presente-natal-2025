@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qual será o presentinho? 🛍️</title>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(#3a0000, #3a0000);
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    padding: 20px;
+    overflow-x: hidden;
+overflow-y: auto;
+
+}
+
+h1 {
+    margin-top: 50px;
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.15rem;
+    max-width: 320px;
+    margin: 15px auto 35px;
+}
+
+.opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+}
+
+button {
+    width: 280px;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    background: #860a8f86;
+    color: white;
+    box-shadow: 0 0 12px rgba(195, 57, 226, 0.45);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #ff1e5a;
+}
+
+#resposta {
+    margin-top: 22px;
+    font-size: 1.2rem;
+    min-height: 40px;
+}
+
+#final {
+    display: none;
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-top: 30px;
+    line-height: 1.4;
+}
+
+/* BOTÃO CERTIDÃO */
+.btn-certidao {
+    display: none;
+    margin-top: 30px;
+    padding: 14px 26px;
+    font-size: 1.1rem;
+    background: #ffffff;
+    color: #b30000;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+}
+
+/* BALÕES */
+.balao {
+    position: fixed;
+    bottom: -60px;
+    font-size: 30px;
+    animation: subir 6s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) scale(1.3);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🛍️ Além de mim, qual será o outro presente?</h1>
+<p>Pensa bem antes de responder… 😏</p>
+
+<div class="opcoes">
+    <button onclick="errado('Só nos seus sonhos 😜')">
+        Um monte de doces 🍭
+    </button>
+
+    <button onclick="errado('Quem sabe um dia… 😂')">
+        Camisa do São Paulo ⚽
+    </button>
+
+    <button onclick="errado('Tá querendo ficar cheirosa pra quem? 😏')">
+        Um perfume 💐
+    </button>
+
+    <button onclick="errado('Era uma das opções… mas não 😅')">
+        Um livro sáfico 📚
+    </button>
+
+    <button onclick="certo()">
+        Seu espírito animal 🦥
+    </button>
+</div>
+
+<div id="resposta"></div>
+
+<div id="final">
+    🎉 PARABÉNS 🎉<br><br>
+    VOCÊ ACABA DE GANHAR SEU PRESENTE.<br>
+</div>
+
+<a href="certidao.html" class="btn-certidao" id="btnCertidao">
+    Ver certidão 📜
+</a>
+
+<!-- Música -->
+<audio id="musica" loop>
+    <source src="natal.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const musica = document.getElementById("musica");
+
+/* autoplay mobile */
+document.addEventListener("click", () => {
+    musica.play();
+}, { once: true });
+
+function errado(msg) {
+    document.getElementById("resposta").innerHTML = msg;
+}
+
+/* RESPOSTA CERTA */
+function certo() {
+    document.getElementById("resposta").innerHTML = "";
+    document.getElementById("final").style.display = "block";
+
+    soltarBaloes();
+
+    // Mostrar botão após 5 segundos
+    setTimeout(() => {
+        const btn = document.getElementById("btnCertidao");
+        btn.style.display = "inline-block";
+        btn.style.animation = "aparecer 0.8s ease forwards";
+    }, 7000);
+}
+
+
+/* BALÕES SUBINDO */
+function soltarBaloes() {
+    for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+            const balao = document.createElement("div");
+            balao.classList.add("balao");
+            balao.innerHTML = "🎈";
+            balao.style.left = Math.random() * 100 + "vw";
+            balao.style.fontSize = (Math.random() * 20 + 20) + "px";
+            document.body.appendChild(balao);
+
+            setTimeout(() => balao.remove(), 6000);
+        }, i * 150);
+    }
+}
+</script>
+
+</body>
+</html>

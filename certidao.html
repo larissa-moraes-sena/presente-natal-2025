@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certidão de Nascimento 🦥</title>
+
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(#f3e8ff, #e3ccff);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* CERTIDÃO */
+.certidao {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 28px;
+    max-width: 340px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(160,120,255,0.35);
+    position: relative;
+    z-index: 2;
+}
+
+.certidao h1 {
+    margin-top: 0;
+    color: #6a2ca0;
+    font-size: 1.7rem;
+}
+
+.certidao p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* CAMPOS */
+label {
+    display: block;
+    text-align: left;
+    margin-top: 14px;
+    font-weight: bold;
+    color: #6a2ca0;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* BOTÃO */
+button {
+    margin-top: 26px;
+    padding: 14px;
+    width: 100%;
+    border-radius: 16px;
+    border: none;
+    background: #b56cff;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 14px rgba(181,108,255,0.5);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.04);
+    background: #a04df0;
+}
+
+/* PREGUIÇAS */
+.preguica {
+    position: absolute;
+    width: 140px;
+    opacity: 0.95;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.top-left {
+    top: 20px;
+    left: 10px;
+}
+
+.top-right {
+    top: 30px;
+    right: 10px;
+}
+
+.bottom-left {
+    bottom: 40px;
+    left: 10px;
+}
+
+.bottom-right {
+    bottom: 50px;
+    right: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PREGUIÇAS FOFAAAAS -->
+<img src="preguica1.png" class="preguica top-left">
+<img src="preguica2.png" class="preguica top-right">
+<img src="preguica3.png" class="preguica bottom-left">
+<img src="preguica4.png" class="preguica bottom-right">
+
+<!-- CERTIDÃO -->
+<div class="certidao">
+    <h1>📜 Certidão</h1>
+    <p>Documento oficial do amor e da preguiça 💜🦥</p>
+
+    <label>Nome:</label>
+    <input type="text" id="nome" placeholder="Nome do bebê preguiça">
+
+    <label>Data:</label>
+    <input type="date" id="data">
+
+    <label>Nome das mães:</label>
+    <input type="text" id="maes" placeholder="Mamães responsáveis 💕">
+
+    <button onclick="salvar()">Registrar certidão 💜</button>
+</div>
+
+<script>
+const nome = document.getElementById("nome");
+const data = document.getElementById("data");
+const maes = document.getElementById("maes");
+
+/* CARREGAR DADOS SALVOS */
+nome.value = localStorage.getItem("cert_nome") || "";
+data.value = localStorage.getItem("cert_data") || "";
+maes.value = localStorage.getItem("cert_maes") || "";
+
+/* SALVAR */
+function salvar() {
+    localStorage.setItem("cert_nome", nome.value);
+    localStorage.setItem("cert_data", data.value);
+    localStorage.setItem("cert_maes", maes.value);
+
+    alert("Certidão registrada com sucesso 💜🦥");
+}
+</script>
+
+</body>
+</html>
